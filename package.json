@@ -1,17 +1,22 @@
 {
   "name": "cse-341-project-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "CSE 341 Project 1 - Contacts API",
   "license": "ISC",
   "author": "sogolo Donaldson",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "swagger": "node swagger.js",
+    "test": "node --check server.js"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongodb": "^7.6.0"
+    "mongodb": "^7.6.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }

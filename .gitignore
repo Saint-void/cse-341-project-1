@@ -1,2 +1,4 @@
-/node_modules
+node_modules
 .env
+.DS_Store
+cse341-ww-student-code-w02-2-team-start

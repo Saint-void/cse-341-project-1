@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const usersController = require('../controllers/users');
 
-router.get('/', (req, res) => { res.send('Hello World');});
+router.use('/', require('./swagger'));
+router.use('/contacts', require('./contacts'));
+router.use('/users', require('./users'));
 
-router.get('/users', usersController.getAll);
-router.get('/users/:id', usersController.getSingle);
+router.get('/', (req, res) => {
+  res.send('Welcome to CSE 341 Project 1 API! Access Swagger documentation at <a href="/api-docs">/api-docs</a>');
+});
 
 module.exports = router;

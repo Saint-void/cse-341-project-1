@@ -1,0 +1,106 @@
+### Variables
+@baseUrl = http://localhost:8080
+@contactId = 66e8b2f9024f22f7b8849b3a
+
+# Change @renderUrl to your deployed Render URL if testing production
+@renderUrl = https://your-render-service.onrender.com
+
+
+############################################################
+# LOCALHOST TESTS
+############################################################
+
+### 1. GET all contacts
+GET {{baseUrl}}/contacts HTTP/1.1
+
+### 2. POST create a new contact (Success - all fields required)
+# @name createContact
+POST {{baseUrl}}/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "1990-05-15"
+}
+
+### 3. POST create another contact
+POST {{baseUrl}}/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "janesmith@example.com",
+  "favoriteColor": "Green",
+  "birthday": "1992-08-22"
+}
+
+### 4. POST test validation failure (Missing required field: favoriteColor)
+POST {{baseUrl}}/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Incomplete",
+  "lastName": "User",
+  "email": "incomplete@example.com",
+  "birthday": "1995-01-01"
+}
+
+### 5. GET single contact by ID (Replace ID with actual ID from POST response)
+GET {{baseUrl}}/contacts/{{contactId}} HTTP/1.1
+
+### 6. PUT update a contact (Replace ID with actual ID)
+PUT {{baseUrl}}/contacts/{{contactId}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Updated",
+  "email": "johnupdated@example.com",
+  "favoriteColor": "Navy Blue",
+  "birthday": "1990-05-15"
+}
+
+### 7. DELETE a contact (Replace ID with actual ID)
+DELETE {{baseUrl}}/contacts/{{contactId}} HTTP/1.1
+
+### 8. Verify deletion (Should return 404 Not Found)
+GET {{baseUrl}}/contacts/{{contactId}} HTTP/1.1
+
+
+############################################################
+# PRODUCTION (RENDER) TESTS
+############################################################
+
+### P1. GET all contacts on Render
+GET {{renderUrl}}/contacts HTTP/1.1
+
+### P2. POST create contact on Render
+POST {{renderUrl}}/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Render",
+  "lastName": "Test",
+  "email": "render@example.com",
+  "favoriteColor": "Purple",
+  "birthday": "2000-01-01"
+}
+
+### P3. PUT update contact on Render
+PUT {{renderUrl}}/contacts/{{contactId}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Render",
+  "lastName": "Updated",
+  "email": "render_updated@example.com",
+  "favoriteColor": "Violet",
+  "birthday": "2000-01-01"
+}
+
+### P4. DELETE contact on Render
+DELETE {{renderUrl}}/contacts/{{contactId}} HTTP/1.1
