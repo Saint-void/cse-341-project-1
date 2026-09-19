@@ -12,9 +12,10 @@ const initDb = (callback) => {
     return callback(null, _db);
   }
 
-  const uri =
-    process.env.MONGODB_URI ||
-    'mongodb+srv://dsogolo_db_user:kaqOYOW4WGow9UQz@cluster0.bwjbowr.mongodb.net/project_1';
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    return callback(new Error('MONGODB_URI environment variable is not defined'));
+  }
 
   MongoClient.connect(uri)
     .then((client) => {
