@@ -12,7 +12,9 @@ const initDb = (callback) => {
     return callback(null, _db);
   }
 
-  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/contacts';
+  const uri =
+    process.env.MONGODB_URI ||
+    'mongodb+srv://dsogolo_db_user:kaqOYOW4WGow9UQz@cluster0.bwjbowr.mongodb.net/project_1';
 
   MongoClient.connect(uri)
     .then((client) => {

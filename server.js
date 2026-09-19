@@ -14,13 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', require('./routes'));
 
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
+
 mongodb.initDb((err) => {
   if (err) {
     console.error('MongoDB connection error:', err);
-    process.exit(1);
   } else {
-    app.listen(port, () => {
-      console.log(`Connected to DB and listening on port ${port}`);
-    });
+    console.log(`Connected to DB successfully`);
   }
 });
