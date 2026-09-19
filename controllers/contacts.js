@@ -40,7 +40,23 @@ const createContact = async (req, res) => {
   try {
     const { firstName, lastName, email, favoriteColor, birthday } = req.body;
 
-    if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !favoriteColor ||
+      !birthday ||
+      typeof firstName !== 'string' ||
+      typeof lastName !== 'string' ||
+      typeof email !== 'string' ||
+      typeof favoriteColor !== 'string' ||
+      typeof birthday !== 'string' ||
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !email.trim() ||
+      !favoriteColor.trim() ||
+      !birthday.trim()
+    ) {
       return res.status(400).json({
         message: 'All fields are required: firstName, lastName, email, favoriteColor, birthday.'
       });
@@ -76,7 +92,23 @@ const updateContact = async (req, res) => {
 
     const { firstName, lastName, email, favoriteColor, birthday } = req.body;
 
-    if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !favoriteColor ||
+      !birthday ||
+      typeof firstName !== 'string' ||
+      typeof lastName !== 'string' ||
+      typeof email !== 'string' ||
+      typeof favoriteColor !== 'string' ||
+      typeof birthday !== 'string' ||
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !email.trim() ||
+      !favoriteColor.trim() ||
+      !birthday.trim()
+    ) {
       return res.status(400).json({
         message: 'All fields are required: firstName, lastName, email, favoriteColor, birthday.'
       });
